@@ -10,7 +10,7 @@ datasource db {
 model City {
   id Int @id @default(autoincrement())
 
-  name    String
+  name    String @unique
   stateId Int
 
   collectionLocations CollectionSite[]
@@ -28,7 +28,7 @@ model City {
 model State {
   id Int @id @default(autoincrement())
 
-  name         String
+  name         String @unique
   abbreviation String
 
   cities City[]
