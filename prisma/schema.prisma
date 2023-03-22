@@ -1,0 +1,164 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model City {
+  id Int @id @default(autoincrement())
+
+  name    String
+  stateId Int
+
+  collectionLocations CollectionSite[]
+  units               Unity[]
+  peoples             People[]
+
+  state State @relation(fields: [stateId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("cities")
+}
+
+model State {
+  id Int @id @default(autoincrement())
+
+  name         String
+  abbreviation String
+
+  cities City[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("states")
+}
+
+model CollectionSite {
+  id Int @id @default(autoincrement())
+
+  name       String
+  street     String
+  number     String
+  complement String
+  cityId     Int
+
+  donations Donation[]
+
+  city City @relation(fields: [cityId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("collection_locations")
+}
+
+model Unity {
+  id Int @id @default(autoincrement())
+
+  name       String
+  number     String
+  complement String
+  cityId     Int
+
+  distributions Distribution[]
+
+  city City @relation(fields: [cityId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("units")
+}
+
+model Donation {
+  id Int @id @default(autoincrement())
+
+  date             DateTime
+  collectionSiteId Int
+  peopleId         Int
+
+  products Product[]
+
+  collectionSite CollectionSite @relation(fields: [collectionSiteId], references: [id])
+  people         People         @relation(fields: [peopleId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("donations")
+}
+
+model People {
+  id Int @id @default(autoincrement())
+
+  name        String
+  street      String
+  number      String
+  complement  String
+  document    String
+  cityId      Int
+  blodyTypeId Int
+
+  donations Donation[]
+
+  city      City      @relation(fields: [cityId], references: [id])
+  blodyType BlodyType @relation(fields: [blodyTypeId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("peoples")
+}
+
+model Product {
+  id Int @id @default(autoincrement())
+
+  label      String
+  validity   DateTime
+  donationId Int
+
+  distributions Distribution[]
+
+  donation Donation @relation(fields: [donationId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("products")
+}
+
+model BlodyType {
+  id Int @id @default(autoincrement())
+
+  type   String
+  factor String
+
+  peoples People[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("blody_types")
+}
+
+model Distribution {
+  id Int @id @default(autoincrement())
+
+  date      DateTime
+  productId Int
+  unityId   Int
+
+  product Product @relation(fields: [productId], references: [id])
+  unity   Unity   @relation(fields: [unityId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("distributions")
+}
