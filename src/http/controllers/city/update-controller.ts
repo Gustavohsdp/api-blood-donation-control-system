@@ -3,17 +3,17 @@ import { z } from 'zod'
 import { makeUpdateCityUseCase } from '../../../use-cases/factories/city/make-update-city-use-case'
 
 export async function update(request: FastifyRequest, reply: FastifyReply) {
-  const updateCityBodySchema = z.object({
+  const updateBodySchema = z.object({
     name: z.string(),
     stateId: z.number(),
   })
 
-  const updateCityParamsSchema = z.object({
+  const updateParamsSchema = z.object({
     cityId: z.coerce.number(),
   })
 
-  const { name, stateId } = updateCityBodySchema.parse(request.body)
-  const { cityId } = updateCityParamsSchema.parse(request.params)
+  const { name, stateId } = updateBodySchema.parse(request.body)
+  const { cityId } = updateParamsSchema.parse(request.params)
 
   const updateCityUseCase = makeUpdateCityUseCase()
 

@@ -3,7 +3,6 @@ import { randomInt } from 'node:crypto'
 import {
   CitiesRepository,
   CitiesRepositoryProps,
-  FindByIdOrNameCitiesRepositoryProps,
   UpdateCitiesRepositoryProps
 } from './../cities-repository'
 export class InMemororyCitiesRepository implements CitiesRepository {
@@ -49,10 +48,8 @@ export class InMemororyCitiesRepository implements CitiesRepository {
     }
   }
 
-  async findByIdOrName({ name, cityId }: FindByIdOrNameCitiesRepositoryProps) {
-    const city = this.items.find(
-      (item) => item.id === cityId || item.name === name,
-    )
+  async findById(cityId: number) {
+    const city = this.items.find((item) => item.id === cityId)
 
     if (!city) {
       return null

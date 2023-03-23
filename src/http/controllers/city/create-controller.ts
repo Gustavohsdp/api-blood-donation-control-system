@@ -3,12 +3,12 @@ import { z } from 'zod'
 import { makeCreateCityUseCase } from '../../../use-cases/factories/city/make-create-city-use-case'
 
 export async function create(request: FastifyRequest, reply: FastifyReply) {
-  const createCityBodySchema = z.object({
+  const createBodySchema = z.object({
     name: z.string(),
     stateId: z.number(),
   })
 
-  const { name, stateId } = createCityBodySchema.parse(request.body)
+  const { name, stateId } = createBodySchema.parse(request.body)
 
   const createCityUseCase = makeCreateCityUseCase()
 

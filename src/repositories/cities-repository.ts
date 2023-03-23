@@ -11,11 +11,6 @@ export interface UpdateCitiesRepositoryProps {
   stateId: number
 }
 
-export interface FindByIdOrNameCitiesRepositoryProps {
-  cityId: number
-  name: string
-}
-
 export interface CitiesRepository {
   create(data: CitiesRepositoryProps): Promise<City>
   update({
@@ -24,9 +19,6 @@ export interface CitiesRepository {
     stateId,
   }: UpdateCitiesRepositoryProps): Promise<City | undefined>
   delete(cityId: number): Promise<void>
-  findByIdOrName({
-    name,
-    cityId,
-  }: FindByIdOrNameCitiesRepositoryProps): Promise<City | null>
+  findById(cityId: number): Promise<City | null>
   findManyCities(): Promise<City[]>
 }

@@ -3,11 +3,11 @@ import { z } from 'zod'
 import { makeDeleteCityUseCase } from '../../../use-cases/factories/city/make-delete-city-use-case'
 
 export async function deleteCity(request: FastifyRequest, reply: FastifyReply) {
-  const deleteCityParamsSchema = z.object({
+  const deleteParamsSchema = z.object({
     cityId: z.coerce.number(),
   })
 
-  const { cityId } = deleteCityParamsSchema.parse(request.params)
+  const { cityId } = deleteParamsSchema.parse(request.params)
 
   const deleteCityUseCase = makeDeleteCityUseCase()
 

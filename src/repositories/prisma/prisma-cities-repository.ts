@@ -1,9 +1,5 @@
 import { prisma } from '../../lib/prisma'
-import {
-  CitiesRepository,
-  CitiesRepositoryProps,
-  FindByIdOrNameCitiesRepositoryProps
-} from '../cities-repository'
+import { CitiesRepository, CitiesRepositoryProps } from '../cities-repository'
 import { UpdateCitiesRepositoryProps } from './../cities-repository'
 
 export class PrismaCitiesRepository implements CitiesRepository {
@@ -44,19 +40,10 @@ export class PrismaCitiesRepository implements CitiesRepository {
     })
   }
 
-  async findByIdOrName(data: FindByIdOrNameCitiesRepositoryProps) {
-    const { cityId, name } = data
-
+  async findById(cityId: number) {
     const city = await prisma.city.findFirst({
       where: {
-        OR: [
-          {
-            id: cityId,
-          },
-          {
-            name: { contains: name, mode: 'insensitive' },
-          },
-        ],
+        id: cityId,
       },
     })
 

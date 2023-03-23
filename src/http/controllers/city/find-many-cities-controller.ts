@@ -5,9 +5,9 @@ export async function findManyCities(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
-  const findManyCityUseCase = makeFindManyCityUseCase()
+  const findManyUseCase = makeFindManyCityUseCase()
 
-  const { cities } = await findManyCityUseCase.execute()
+  const { cities } = await findManyUseCase.execute()
 
   return reply.status(200).send({ cities })
 }

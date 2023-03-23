@@ -2,26 +2,21 @@ import { City } from '@prisma/client'
 import { CitiesRepository } from '../../repositories/cities-repository'
 import { ResourceNotFoundError } from '../errors/resource-not-found-error'
 
-interface FindByIdOrNameCityUseCaseRequest {
+interface FindByIdCityUseCaseRequest {
   cityId: number
-  name: string
 }
 
-interface FindByIdOrNameCityUseCaseResponse {
+interface FindByIdCityUseCaseResponse {
   city: City
 }
 
-export class FindByIdOrNameCityUseCase {
+export class FindByIdCityUseCase {
   constructor(private cityRepository: CitiesRepository) { }
 
   async execute({
     cityId,
-    name,
-  }: FindByIdOrNameCityUseCaseRequest): Promise<FindByIdOrNameCityUseCaseResponse> {
-    const city = await this.cityRepository.findByIdOrName({
-      cityId,
-      name,
-    })
+  }: FindByIdCityUseCaseRequest): Promise<FindByIdCityUseCaseResponse> {
+    const city = await this.cityRepository.findById(cityId)
 
     if (!city) {
       throw new ResourceNotFoundError()
