@@ -1,7 +1,7 @@
-import { FastifyReply, FastifyRequest } from 'fastify';
-import { z } from 'zod';
+import { FastifyReply, FastifyRequest } from 'fastify'
+import { z } from 'zod'
 
-import { makeDeleteStateUseCase } from '@/use-cases/factories/state/make-delete-state-use-case';
+import { makeDeleteStateUseCase } from '@/use-cases/factories/state/make-delete-state-use-case'
 
 export async function deleteState(
   request: FastifyRequest,
@@ -9,15 +9,15 @@ export async function deleteState(
 ) {
   const deleteParamsSchema = z.object({
     stateId: z.coerce.number(),
-  });
+  })
 
-  const { stateId } = deleteParamsSchema.parse(request.params);
+  const { stateId } = deleteParamsSchema.parse(request.params)
 
-  const deleteUseCase = makeDeleteStateUseCase();
+  const deleteUseCase = makeDeleteStateUseCase()
 
   await deleteUseCase.execute({
     id: stateId,
-  });
+  })
 
-  return reply.status(200).send();
+  return reply.status(200).send()
 }

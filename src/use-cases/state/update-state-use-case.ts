@@ -1,14 +1,14 @@
-import { StatesRepository } from '@/repositories/states-repository';
-import { State } from '@prisma/client';
+import { StatesRepository } from '@/repositories/states-repository'
+import { State } from '@prisma/client'
 
 interface UpdateStateUseCaseRequest {
-  id: number;
-  name: string;
-  abbreviation: string;
+  id: number
+  name: string
+  abbreviation: string
 }
 
 interface UpdateStateUseCaseResponse {
-  state: State | undefined;
+  state: State | undefined
 }
 
 export class UpdateStateUseCase {
@@ -23,8 +23,8 @@ export class UpdateStateUseCase {
       id,
       name,
       abbreviation,
-    });
+    })
 
-    return { state };
+    return { state }
   }
 }

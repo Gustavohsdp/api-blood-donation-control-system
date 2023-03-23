@@ -1,16 +1,16 @@
-import { CollectionSitesRepository } from '@/repositories/collection-sites-repository';
-import { CollectionSite } from '@prisma/client';
+import { CollectionSitesRepository } from '@/repositories/collection-sites-repository'
+import { CollectionSite } from '@prisma/client'
 
 interface CreateCollectionSiteUseCaseRequest {
-  name: string;
-  street: string;
-  number: string;
-  complement: string;
-  cityId: number;
+  name: string
+  street: string
+  number: string
+  complement: string
+  cityId: number
 }
 
 interface CreateCollectionSiteUseCaseResponse {
-  collectionSite: CollectionSite;
+  collectionSite: CollectionSite
 }
 
 export class CreateCollectionSiteUseCase {
@@ -29,8 +29,8 @@ export class CreateCollectionSiteUseCase {
       name,
       number,
       street,
-    });
+    })
 
-    return { collectionSite };
+    return { collectionSite }
   }
 }

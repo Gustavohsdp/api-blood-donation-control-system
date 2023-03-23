@@ -1,14 +1,14 @@
-import { City } from '@prisma/client';
+import { City } from '@prisma/client'
 
-import { CitiesRepository } from '../../repositories/cities-repository';
-import { ResourceNotFoundError } from '../errors/resource-not-found-error';
+import { CitiesRepository } from '../../repositories/cities-repository'
+import { ResourceNotFoundError } from '../errors/resource-not-found-error'
 
 interface FindByIdCityUseCaseRequest {
-  cityId: number;
+  cityId: number
 }
 
 interface FindByIdCityUseCaseResponse {
-  city: City;
+  city: City
 }
 
 export class FindByIdCityUseCase {
@@ -17,12 +17,12 @@ export class FindByIdCityUseCase {
   async execute({
     cityId,
   }: FindByIdCityUseCaseRequest): Promise<FindByIdCityUseCaseResponse> {
-    const city = await this.cityRepository.findById(cityId);
+    const city = await this.cityRepository.findById(cityId)
 
     if (!city) {
-      throw new ResourceNotFoundError();
+      throw new ResourceNotFoundError()
     }
 
-    return { city };
+    return { city }
   }
 }

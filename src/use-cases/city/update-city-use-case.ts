@@ -1,15 +1,15 @@
-import { City } from '@prisma/client';
+import { City } from '@prisma/client'
 
-import { CitiesRepository } from '../../repositories/cities-repository';
+import { CitiesRepository } from '../../repositories/cities-repository'
 
 interface UpdateCityUseCaseRequest {
-  name: string;
-  stateId: number;
-  cityId: number;
+  name: string
+  stateId: number
+  cityId: number
 }
 
 interface UpdateCityUseCaseResponse {
-  city: City;
+  city: City
 }
 
 export class UpdateCityUseCase {
@@ -24,8 +24,8 @@ export class UpdateCityUseCase {
       name,
       stateId,
       cityId,
-    });
+    })
 
-    return { city };
+    return { city }
   }
 }

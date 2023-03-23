@@ -1,14 +1,14 @@
-import { StatesRepository } from '@/repositories/states-repository';
-import { State } from '@prisma/client';
+import { StatesRepository } from '@/repositories/states-repository'
+import { State } from '@prisma/client'
 
-import { ResourceNotFoundError } from '../errors/resource-not-found-error';
+import { ResourceNotFoundError } from '../errors/resource-not-found-error'
 
 interface FindByIdStateUseCaseRequest {
-  id: number;
+  id: number
 }
 
 interface FindByIdStateUseCaseResponse {
-  state: State;
+  state: State
 }
 
 export class FindByIdStateUseCase {
@@ -17,12 +17,12 @@ export class FindByIdStateUseCase {
   async execute({
     id,
   }: FindByIdStateUseCaseRequest): Promise<FindByIdStateUseCaseResponse> {
-    const state = await this.statesRepository.findById(id);
+    const state = await this.statesRepository.findById(id)
 
     if (!state) {
-      throw new ResourceNotFoundError();
+      throw new ResourceNotFoundError()
     }
 
-    return { state };
+    return { state }
   }
 }

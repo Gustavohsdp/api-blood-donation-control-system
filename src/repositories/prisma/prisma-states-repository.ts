@@ -1,22 +1,22 @@
-import { prisma } from '../../lib/prisma';
+import { prisma } from '../../lib/prisma'
 import {
   CreateProps,
   StatesRepository,
   UpdateProps,
-} from '../states-repository';
+} from '../states-repository'
 
 export class PrismaStatesRepository implements StatesRepository {
   async create(data: CreateProps) {
-    const { name, abbreviation } = data;
+    const { name, abbreviation } = data
 
     const state = await prisma.state.create({
       data: {
         name,
         abbreviation,
       },
-    });
+    })
 
-    return state;
+    return state
   }
 
   async update({ name, abbreviation, id }: UpdateProps) {
@@ -28,9 +28,9 @@ export class PrismaStatesRepository implements StatesRepository {
         name,
         abbreviation,
       },
-    });
+    })
 
-    return state;
+    return state
   }
 
   async delete(id: number) {
@@ -38,7 +38,7 @@ export class PrismaStatesRepository implements StatesRepository {
       where: {
         id,
       },
-    });
+    })
   }
 
   async findById(id: number) {
@@ -46,9 +46,9 @@ export class PrismaStatesRepository implements StatesRepository {
       where: {
         id,
       },
-    });
+    })
 
-    return state;
+    return state
   }
 
   async findMany() {
@@ -59,8 +59,8 @@ export class PrismaStatesRepository implements StatesRepository {
       orderBy: {
         id: 'asc',
       },
-    });
+    })
 
-    return states;
+    return states
   }
 }

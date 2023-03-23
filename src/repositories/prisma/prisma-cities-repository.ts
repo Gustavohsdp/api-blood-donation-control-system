@@ -1,26 +1,26 @@
-import { prisma } from '../../lib/prisma';
+import { prisma } from '../../lib/prisma'
 import {
   CitiesRepository,
   CreateProps,
   UpdateProps,
-} from '../cities-repository';
+} from '../cities-repository'
 
 export class PrismaCitiesRepository implements CitiesRepository {
   async create(data: CreateProps) {
-    const { name, stateId } = data;
+    const { name, stateId } = data
 
     const city = await prisma.city.create({
       data: {
         name,
         state: { connect: { id: stateId } },
       },
-    });
+    })
 
-    return city;
+    return city
   }
 
   async update(data: UpdateProps) {
-    const { name, stateId, cityId } = data;
+    const { name, stateId, cityId } = data
 
     const city = await prisma.city.update({
       where: {
@@ -30,9 +30,9 @@ export class PrismaCitiesRepository implements CitiesRepository {
         name,
         state: { connect: { id: stateId } },
       },
-    });
+    })
 
-    return city;
+    return city
   }
 
   async delete(cityId: number) {
@@ -40,7 +40,7 @@ export class PrismaCitiesRepository implements CitiesRepository {
       where: {
         id: cityId,
       },
-    });
+    })
   }
 
   async findById(cityId: number) {
@@ -48,9 +48,9 @@ export class PrismaCitiesRepository implements CitiesRepository {
       where: {
         id: cityId,
       },
-    });
+    })
 
-    return city;
+    return city
   }
 
   async findMany() {
@@ -63,8 +63,8 @@ export class PrismaCitiesRepository implements CitiesRepository {
       orderBy: {
         id: 'asc',
       },
-    });
+    })
 
-    return cities;
+    return cities
   }
 }

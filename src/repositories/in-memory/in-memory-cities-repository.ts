@@ -1,14 +1,14 @@
-import { randomInt } from 'node:crypto';
+import { randomInt } from 'node:crypto'
 
-import { City } from '@prisma/client';
+import { City } from '@prisma/client'
 
 import {
   CitiesRepository,
   CreateProps,
   UpdateProps,
-} from './../cities-repository';
+} from './../cities-repository'
 export class InMemororyCitiesRepository implements CitiesRepository {
-  public items: City[] = [];
+  public items: City[] = []
 
   async create(data: CreateProps) {
     const city = {
@@ -17,15 +17,15 @@ export class InMemororyCitiesRepository implements CitiesRepository {
       stateId: data.stateId,
       createdAt: new Date(),
       updatedAt: new Date(),
-    };
+    }
 
-    this.items.push(city);
+    this.items.push(city)
 
-    return city;
+    return city
   }
 
   async update({ cityId, name, stateId }: UpdateProps) {
-    const cityIndex = this.items.findIndex(item => item.id === cityId);
+    const cityIndex = this.items.findIndex((item) => item.id === cityId)
 
     if (cityIndex >= 0) {
       this.items[cityIndex] = {
@@ -34,33 +34,33 @@ export class InMemororyCitiesRepository implements CitiesRepository {
         stateId,
         createdAt: new Date(),
         updatedAt: new Date(),
-      };
+      }
 
-      const city = this.items.find(item => item.id === cityId);
+      const city = this.items.find((item) => item.id === cityId)
 
-      return city;
+      return city
     }
   }
 
   async delete(cityId: number) {
-    const cityIndex = this.items.findIndex(item => item.id === cityId);
+    const cityIndex = this.items.findIndex((item) => item.id === cityId)
 
     if (cityIndex >= 0) {
-      this.items.splice(cityIndex, 1);
+      this.items.splice(cityIndex, 1)
     }
   }
 
   async findById(cityId: number) {
-    const city = this.items.find(item => item.id === cityId);
+    const city = this.items.find((item) => item.id === cityId)
 
     if (!city) {
-      return null;
+      return null
     }
 
-    return city;
+    return city
   }
 
   async findMany() {
-    return this.items;
+    return this.items
   }
 }

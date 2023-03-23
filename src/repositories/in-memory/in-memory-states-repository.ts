@@ -1,18 +1,18 @@
-import { randomInt } from 'node:crypto';
+import { randomInt } from 'node:crypto'
 
-import { State } from '@prisma/client';
+import { State } from '@prisma/client'
 
 import {
   CreateProps,
   StatesRepository,
   UpdateProps,
-} from '../states-repository';
+} from '../states-repository'
 
 export class InMemororyStatesRepository implements StatesRepository {
-  public items: State[] = [];
+  public items: State[] = []
 
   async create(data: CreateProps): Promise<State> {
-    const { abbreviation, name } = data;
+    const { abbreviation, name } = data
 
     const state = {
       id: randomInt(1000),
@@ -20,15 +20,15 @@ export class InMemororyStatesRepository implements StatesRepository {
       abbreviation,
       createdAt: new Date(),
       updatedAt: new Date(),
-    };
+    }
 
-    this.items.push(state);
+    this.items.push(state)
 
-    return state;
+    return state
   }
 
   async update({ id, name, abbreviation }: UpdateProps) {
-    const stateIndex = this.items.findIndex(item => item.id === id);
+    const stateIndex = this.items.findIndex((item) => item.id === id)
 
     if (stateIndex >= 0) {
       this.items[stateIndex] = {
@@ -37,33 +37,33 @@ export class InMemororyStatesRepository implements StatesRepository {
         abbreviation,
         createdAt: new Date(),
         updatedAt: new Date(),
-      };
+      }
 
-      const state = this.items.find(item => item.id === id);
+      const state = this.items.find((item) => item.id === id)
 
-      return state;
+      return state
     }
   }
 
   async delete(id: number) {
-    const stateIndex = this.items.findIndex(item => item.id === id);
+    const stateIndex = this.items.findIndex((item) => item.id === id)
 
     if (stateIndex >= 0) {
-      this.items.splice(stateIndex, 1);
+      this.items.splice(stateIndex, 1)
     }
   }
 
   async findById(id: number) {
-    const state = this.items.find(item => item.id === id);
+    const state = this.items.find((item) => item.id === id)
 
     if (!state) {
-      return null;
+      return null
     }
 
-    return state;
+    return state
   }
 
   async findMany() {
-    return this.items;
+    return this.items
   }
 }

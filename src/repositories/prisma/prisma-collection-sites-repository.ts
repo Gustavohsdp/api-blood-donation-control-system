@@ -1,15 +1,15 @@
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/prisma'
 import {
   CollectionSitesRepository,
   CreateProps,
   UpdateProps,
-} from '@/repositories/collection-sites-repository';
-import { CollectionSite } from '@prisma/client';
+} from '@/repositories/collection-sites-repository'
+import { CollectionSite } from '@prisma/client'
 export class PrismaCollectionSitesRepository
   implements CollectionSitesRepository
 {
   async create(data: CreateProps) {
-    const { cityId, complement, name, number, street } = data;
+    const { cityId, complement, name, number, street } = data
 
     const collectionSite = await prisma.collectionSite.create({
       data: {
@@ -19,9 +19,9 @@ export class PrismaCollectionSitesRepository
         number,
         street,
       },
-    });
+    })
 
-    return collectionSite;
+    return collectionSite
   }
 
   async update({
@@ -43,13 +43,13 @@ export class PrismaCollectionSitesRepository
         number,
         street,
       },
-    });
+    })
 
-    return collectionSite;
+    return collectionSite
   }
 
   async delete(id: number): Promise<void> {
-    await prisma.collectionSite.delete({ where: { id } });
+    await prisma.collectionSite.delete({ where: { id } })
   }
 
   async findById(id: number): Promise<CollectionSite | null> {
@@ -57,9 +57,9 @@ export class PrismaCollectionSitesRepository
       where: {
         id,
       },
-    });
+    })
 
-    return collectionSite;
+    return collectionSite
   }
 
   async findMany(): Promise<CollectionSite[]> {
@@ -70,8 +70,8 @@ export class PrismaCollectionSitesRepository
       orderBy: {
         id: 'asc',
       },
-    });
+    })
 
-    return collectionSites;
+    return collectionSites
   }
 }

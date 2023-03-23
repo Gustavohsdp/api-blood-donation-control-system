@@ -15,7 +15,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@sup3r-us3r/eslint-config": "1.2.0",
+    "@rocketseat/eslint-config": "1.2.0",
     "@types/node": "^18.15.5",
     "@vitest/coverage-c8": "0.29.7",
     "@vitest/ui": "0.29.7",
@@ -28,7 +28,6 @@
   },
   "dependencies": {
     "@prisma/client": "4.11.0",
-    "@rocketseat/eslint-config": "1.2.0",
     "dotenv": "^16.0.3",
     "fastify": "^4.15.0",
     "prisma": "4.11.0",

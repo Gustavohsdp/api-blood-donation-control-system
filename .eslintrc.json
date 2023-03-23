@@ -1,8 +1,7 @@
 {
-  "extends": "@sup3r-us3r/eslint-config/react",
+  "extends": ["@rocketseat/eslint-config/node"],
   "rules": {
     "camelcase": "off",
-    "no-useless-constructor": "off",
-    "@typescript-eslint/naming-convention": "off"
+    "no-useless-constructor": "off"
   }
 }

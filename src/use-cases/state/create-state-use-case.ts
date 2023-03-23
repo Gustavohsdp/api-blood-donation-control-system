@@ -1,13 +1,13 @@
-import { StatesRepository } from '@/repositories/states-repository';
-import { State } from '@prisma/client';
+import { StatesRepository } from '@/repositories/states-repository'
+import { State } from '@prisma/client'
 
 interface CreateStateUseCaseRequest {
-  name: string;
-  abbreviation: string;
+  name: string
+  abbreviation: string
 }
 
 interface CreateStateUseCaseResponse {
-  state: State;
+  state: State
 }
 
 export class CreateStateUseCase {
@@ -20,8 +20,8 @@ export class CreateStateUseCase {
     const state = await this.stateRepository.create({
       name,
       abbreviation,
-    });
+    })
 
-    return { state };
+    return { state }
   }
 }

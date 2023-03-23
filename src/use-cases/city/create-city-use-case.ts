@@ -1,14 +1,14 @@
-import { City } from '@prisma/client';
+import { City } from '@prisma/client'
 
-import { CitiesRepository } from '../../repositories/cities-repository';
+import { CitiesRepository } from '../../repositories/cities-repository'
 
 interface CreateCityUseCaseRequest {
-  name: string;
-  stateId: number;
+  name: string
+  stateId: number
 }
 
 interface CreateCityUseCaseResponse {
-  city: City;
+  city: City
 }
 
 export class CreateCityUseCase {
@@ -21,8 +21,8 @@ export class CreateCityUseCase {
     const city = await this.cityRepository.create({
       name,
       stateId,
-    });
+    })
 
-    return { city };
+    return { city }
   }
 }

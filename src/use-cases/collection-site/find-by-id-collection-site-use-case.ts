@@ -1,14 +1,14 @@
-import { CollectionSitesRepository } from '@/repositories/collection-sites-repository';
-import { CollectionSite } from '@prisma/client';
+import { CollectionSitesRepository } from '@/repositories/collection-sites-repository'
+import { CollectionSite } from '@prisma/client'
 
-import { ResourceNotFoundError } from '../errors/resource-not-found-error';
+import { ResourceNotFoundError } from '../errors/resource-not-found-error'
 
 interface FindByIdCollectionSiteUseCaseRequest {
-  collectionSiteId: number;
+  collectionSiteId: number
 }
 
 interface FindByIdCollectionSiteUseCaseResponse {
-  collectionSite: CollectionSite;
+  collectionSite: CollectionSite
 }
 
 export class FindByIdCollectionSiteUseCase {
@@ -19,12 +19,12 @@ export class FindByIdCollectionSiteUseCase {
   }: FindByIdCollectionSiteUseCaseRequest): Promise<FindByIdCollectionSiteUseCaseResponse> {
     const collectionSite = await this.collectionSitesRepository.findById(
       collectionSiteId,
-    );
+    )
 
     if (!collectionSite) {
-      throw new ResourceNotFoundError();
+      throw new ResourceNotFoundError()
     }
 
-    return { collectionSite };
+    return { collectionSite }
   }
 }

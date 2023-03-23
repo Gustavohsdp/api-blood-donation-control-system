@@ -1,13 +1,13 @@
-import { CitiesRepository } from '../../repositories/cities-repository';
+import { CitiesRepository } from '../../repositories/cities-repository'
 
 interface DeleteCityUseCaseRequest {
-  cityId: number;
+  cityId: number
 }
 
 export class DeleteCityUseCase {
   constructor(private cityRepository: CitiesRepository) {}
 
   async execute({ cityId }: DeleteCityUseCaseRequest): Promise<void> {
-    await this.cityRepository.delete(cityId);
+    await this.cityRepository.delete(cityId)
   }
 }
