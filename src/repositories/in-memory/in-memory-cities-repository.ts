@@ -10,7 +10,7 @@ export class InMemororyCitiesRepository implements CitiesRepository {
   public items: City[] = []
 
   async create(data: CitiesRepositoryProps) {
-    const City = {
+    const city = {
       id: randomInt(1000),
       name: data.name,
       stateId: data.stateId,
@@ -18,9 +18,9 @@ export class InMemororyCitiesRepository implements CitiesRepository {
       updatedAt: new Date(),
     }
 
-    this.items.push(City)
+    this.items.push(city)
 
-    return City
+    return city
   }
 
   async update({ cityId, name, stateId }: UpdateCitiesRepositoryProps) {
@@ -49,10 +49,7 @@ export class InMemororyCitiesRepository implements CitiesRepository {
     }
   }
 
-  async findByIdOrName({
-    name,
-    cityId,
-  }: FindByIdOrNameCitiesRepositoryProps): Promise<City | null> {
+  async findByIdOrName({ name, cityId }: FindByIdOrNameCitiesRepositoryProps) {
     const city = this.items.find(
       (item) => item.id === cityId || item.name === name,
     )
@@ -64,7 +61,7 @@ export class InMemororyCitiesRepository implements CitiesRepository {
     return city
   }
 
-  async findManyCities(): Promise<City[]> {
+  async findManyCities() {
     return this.items
   }
 }

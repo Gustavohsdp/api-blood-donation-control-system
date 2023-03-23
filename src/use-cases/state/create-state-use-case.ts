@@ -1,5 +1,5 @@
+import { StatesRepository } from '@/repositories/states-repository'
 import { State } from '@prisma/client'
-import { StatesRepository } from '../repositories/states-repository'
 
 interface CreateStateUseCaseRequest {
   name: string

@@ -1,5 +1,9 @@
 import { prisma } from '../../lib/prisma'
-import { StatesRepository, StatesRepositoryProps } from '../states-repository'
+import {
+  StatesRepository,
+  StatesRepositoryProps,
+  UpdateStateRepositoryProps
+} from '../states-repository'
 
 export class PrismaStatesRepository implements StatesRepository {
   async create(data: StatesRepositoryProps) {
@@ -15,9 +19,7 @@ export class PrismaStatesRepository implements StatesRepository {
     return state
   }
 
-  async update(id: number, data: StatesRepositoryProps) {
-    const { name, abbreviation } = data
-
+  async update({ name, abbreviation, id }: UpdateStateRepositoryProps) {
     const state = await prisma.state.update({
       where: {
         id,
@@ -39,18 +41,17 @@ export class PrismaStatesRepository implements StatesRepository {
     })
   }
 
-  async findByIdOrName(id: number, name: string) {
+  async findById(id: number) {
     const state = await prisma.state.findUnique({
       where: {
         id,
-        name,
       },
     })
 
     return state
   }
 
-  async findManyCities() {
+  async findManyStates() {
     const states = await prisma.state.findMany()
 
     return states
