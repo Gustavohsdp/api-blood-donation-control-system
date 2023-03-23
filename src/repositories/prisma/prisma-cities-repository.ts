@@ -51,7 +51,13 @@ export class PrismaCitiesRepository implements CitiesRepository {
   }
 
   async findManyCities() {
-    const cities = await prisma.city.findMany()
+    const cities = await prisma.city.findMany({
+      include: {
+        collectionLocations: true,
+        peoples: true,
+        units: true,
+      },
+    })
 
     return cities
   }

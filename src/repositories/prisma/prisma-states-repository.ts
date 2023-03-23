@@ -52,7 +52,11 @@ export class PrismaStatesRepository implements StatesRepository {
   }
 
   async findManyStates() {
-    const states = await prisma.state.findMany()
+    const states = await prisma.state.findMany({
+      include: {
+        cities: true,
+      },
+    })
 
     return states
   }
