@@ -8,7 +8,7 @@ interface UpdateStateUseCaseRequest {
 }
 
 interface UpdateStateUseCaseResponse {
-  state: State
+  state: State | undefined
 }
 
 export class UpdateStateUseCase {
