@@ -1,6 +1,7 @@
-import { makeUpdateCollectionSiteUseCase } from '@/use-cases/factories/collectionSite/make-update-collection-site-use-case'
-import { FastifyReply, FastifyRequest } from 'fastify'
-import { z } from 'zod'
+import { FastifyReply, FastifyRequest } from 'fastify';
+import { z } from 'zod';
+
+import { makeUpdateCollectionSiteUseCase } from '@/use-cases/factories/collectionSite/make-update-collection-site-use-case';
 
 export async function update(request: FastifyRequest, reply: FastifyReply) {
   const updateBodySchema = z.object({
@@ -9,27 +10,27 @@ export async function update(request: FastifyRequest, reply: FastifyReply) {
     number: z.string(),
     complement: z.string(),
     cityId: z.coerce.number(),
-  })
+  });
 
   const updateParamsSchema = z.object({
     collectionSiteId: z.coerce.number(),
-  })
+  });
 
   const { name, cityId, complement, number, street } = updateBodySchema.parse(
     request.body,
-  )
-  const { collectionSiteId } = updateParamsSchema.parse(request.params)
+  );
+  const { collectionSiteId } = updateParamsSchema.parse(request.params);
 
-  const updateStateUseCase = makeUpdateCollectionSiteUseCase()
+  const updateUseCase = makeUpdateCollectionSiteUseCase();
 
-  const { collectionSite } = await updateStateUseCase.execute({
+  const { collectionSite } = await updateUseCase.execute({
     name,
     cityId,
     complement,
     number,
     street,
     collectionSiteId,
-  })
+  });
 
-  return reply.status(200).send(collectionSite)
+  return reply.status(200).send(collectionSite);
 }

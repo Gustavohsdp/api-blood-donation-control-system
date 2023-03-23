@@ -1,20 +1,21 @@
-import { beforeEach, describe, expect, it } from 'vitest'
-import { InMemoryCollectionSites } from './../../repositories/in-memory/in-memory-collection-sites-repository'
-import { CreateCollectionSiteUseCase } from './create-collection-site-use-case'
-import { UpdateCollectionSiteUseCase } from './update-collection-site-use-case'
+import { beforeEach, describe, expect, it } from 'vitest';
 
-let colletionSitesRepository: InMemoryCollectionSites
-let createCollectionSite: CreateCollectionSiteUseCase
-let sut: UpdateCollectionSiteUseCase
+import { InMemoryCollectionSites } from './../../repositories/in-memory/in-memory-collection-sites-repository';
+import { CreateCollectionSiteUseCase } from './create-collection-site-use-case';
+import { UpdateCollectionSiteUseCase } from './update-collection-site-use-case';
+
+let colletionSitesRepository: InMemoryCollectionSites;
+let createCollectionSite: CreateCollectionSiteUseCase;
+let sut: UpdateCollectionSiteUseCase;
 
 describe('Update Colletion Site Use Case', () => {
   beforeEach(() => {
-    colletionSitesRepository = new InMemoryCollectionSites()
+    colletionSitesRepository = new InMemoryCollectionSites();
     createCollectionSite = new CreateCollectionSiteUseCase(
       colletionSitesRepository,
-    )
-    sut = new UpdateCollectionSiteUseCase(colletionSitesRepository)
-  })
+    );
+    sut = new UpdateCollectionSiteUseCase(colletionSitesRepository);
+  });
 
   it('should be able update collection site', async () => {
     const { collectionSite: created } = await createCollectionSite.execute({
@@ -23,7 +24,7 @@ describe('Update Colletion Site Use Case', () => {
       complement: 'near the mineirão',
       number: '1001',
       street: 'Av. Antônio Abrahão Caram',
-    })
+    });
 
     const { collectionSite } = await sut.execute({
       cityId: created.cityId,
@@ -32,8 +33,8 @@ describe('Update Colletion Site Use Case', () => {
       name: 'UPA Savassi',
       number: created.number,
       street: created.street,
-    })
+    });
 
-    expect(collectionSite?.name).toEqual('UPA Savassi')
-  })
-})
+    expect(collectionSite?.name).toEqual('UPA Savassi');
+  });
+});

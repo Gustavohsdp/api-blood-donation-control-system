@@ -1,21 +1,22 @@
-import { FastifyReply, FastifyRequest } from 'fastify'
-import { z } from 'zod'
-import { makeCreateCityUseCase } from '../../../use-cases/factories/city/make-create-city-use-case'
+import { FastifyReply, FastifyRequest } from 'fastify';
+import { z } from 'zod';
+
+import { makeCreateCityUseCase } from '../../../use-cases/factories/city/make-create-city-use-case';
 
 export async function create(request: FastifyRequest, reply: FastifyReply) {
   const createBodySchema = z.object({
     name: z.string(),
     stateId: z.number(),
-  })
+  });
 
-  const { name, stateId } = createBodySchema.parse(request.body)
+  const { name, stateId } = createBodySchema.parse(request.body);
 
-  const createCityUseCase = makeCreateCityUseCase()
+  const createUseCase = makeCreateCityUseCase();
 
-  await createCityUseCase.execute({
+  const { city } = await createUseCase.execute({
     name,
     stateId,
-  })
+  });
 
-  return reply.status(201).send()
+  return reply.status(201).send(city);
 }

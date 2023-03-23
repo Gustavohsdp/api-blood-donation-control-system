@@ -1,19 +1,20 @@
-import { FastifyReply, FastifyRequest } from 'fastify'
-import { z } from 'zod'
-import { makeDeleteCityUseCase } from '../../../use-cases/factories/city/make-delete-city-use-case'
+import { FastifyReply, FastifyRequest } from 'fastify';
+import { z } from 'zod';
+
+import { makeDeleteCityUseCase } from '../../../use-cases/factories/city/make-delete-city-use-case';
 
 export async function deleteCity(request: FastifyRequest, reply: FastifyReply) {
   const deleteParamsSchema = z.object({
     cityId: z.coerce.number(),
-  })
+  });
 
-  const { cityId } = deleteParamsSchema.parse(request.params)
+  const { cityId } = deleteParamsSchema.parse(request.params);
 
-  const deleteCityUseCase = makeDeleteCityUseCase()
+  const deleteUseCase = makeDeleteCityUseCase();
 
-  await deleteCityUseCase.execute({
+  await deleteUseCase.execute({
     cityId,
-  })
+  });
 
-  return reply.status(200).send()
+  return reply.status(200).send();
 }

@@ -1,29 +1,30 @@
-import { CollectionSitesRepository } from '@/repositories/collection-sites-repository'
-import { CollectionSite } from '@prisma/client'
-import { ResourceNotFoundError } from '../errors/resource-not-found-error'
+import { CollectionSitesRepository } from '@/repositories/collection-sites-repository';
+import { CollectionSite } from '@prisma/client';
+
+import { ResourceNotFoundError } from '../errors/resource-not-found-error';
 
 interface FindByIdCollectionSiteUseCaseRequest {
-  collectionSiteId: number
+  collectionSiteId: number;
 }
 
 interface FindByIdCollectionSiteUseCaseResponse {
-  collectionSite: CollectionSite
+  collectionSite: CollectionSite;
 }
 
 export class FindByIdCollectionSiteUseCase {
-  constructor(private collectionSitesRepository: CollectionSitesRepository) { }
+  constructor(private collectionSitesRepository: CollectionSitesRepository) {}
 
   async execute({
     collectionSiteId,
   }: FindByIdCollectionSiteUseCaseRequest): Promise<FindByIdCollectionSiteUseCaseResponse> {
     const collectionSite = await this.collectionSitesRepository.findById(
       collectionSiteId,
-    )
+    );
 
     if (!collectionSite) {
-      throw new ResourceNotFoundError()
+      throw new ResourceNotFoundError();
     }
 
-    return { collectionSite }
+    return { collectionSite };
   }
 }

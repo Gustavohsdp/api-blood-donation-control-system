@@ -1,22 +1,22 @@
-import { CollectionSitesRepository } from '@/repositories/collection-sites-repository'
-import { CollectionSite } from '@prisma/client'
+import { CollectionSitesRepository } from '@/repositories/collection-sites-repository';
+import { CollectionSite } from '@prisma/client';
 
 interface UpdateCollectionSiteUseCaseRequest {
-  collectionSiteId: number
+  collectionSiteId: number;
 
-  name: string
-  street: string
-  number: string
-  complement: string
-  cityId: number
+  name: string;
+  street: string;
+  number: string;
+  complement: string;
+  cityId: number;
 }
 
 interface UpdateCollectionSiteUseCaseResponse {
-  collectionSite: CollectionSite | undefined
+  collectionSite: CollectionSite | undefined;
 }
 
 export class UpdateCollectionSiteUseCase {
-  constructor(private collectionSitesRepository: CollectionSitesRepository) { }
+  constructor(private collectionSitesRepository: CollectionSitesRepository) {}
 
   async execute({
     cityId,
@@ -33,8 +33,8 @@ export class UpdateCollectionSiteUseCase {
       name,
       number,
       street,
-    })
+    });
 
-    return { collectionSite }
+    return { collectionSite };
   }
 }

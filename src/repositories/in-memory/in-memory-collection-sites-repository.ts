@@ -1,16 +1,18 @@
-import { CollectionSite } from '@prisma/client'
-import { randomInt } from 'node:crypto'
+import { randomInt } from 'node:crypto';
+
+import { CollectionSite } from '@prisma/client';
+
 import {
   CollectionSitesRepository,
   CreateProps,
-  UpdateProps
-} from '../collection-sites-repository'
+  UpdateProps,
+} from '../collection-sites-repository';
 
 export class InMemoryCollectionSites implements CollectionSitesRepository {
-  public items: CollectionSite[] = []
+  public items: CollectionSite[] = [];
 
   async create(data: CreateProps) {
-    const { cityId, complement, name, number, street } = data
+    const { cityId, complement, name, number, street } = data;
 
     const collectionSite = {
       id: randomInt(1000),
@@ -22,11 +24,11 @@ export class InMemoryCollectionSites implements CollectionSitesRepository {
 
       createdAt: new Date(),
       updatedAt: new Date(),
-    }
+    };
 
-    this.items.push(collectionSite)
+    this.items.push(collectionSite);
 
-    return collectionSite
+    return collectionSite;
   }
 
   async update({
@@ -38,8 +40,8 @@ export class InMemoryCollectionSites implements CollectionSitesRepository {
     street,
   }: UpdateProps) {
     const collectionSiteIndex = this.items.findIndex(
-      (item) => item.id === collectionSiteId,
-    )
+      item => item.id === collectionSiteId,
+    );
 
     if (collectionSiteIndex >= 0) {
       this.items[collectionSiteIndex] = {
@@ -51,35 +53,35 @@ export class InMemoryCollectionSites implements CollectionSitesRepository {
         cityId,
         createdAt: new Date(),
         updatedAt: new Date(),
-      }
+      };
     }
 
     const collectionSite = this.items.find(
-      (item) => item.id === collectionSiteId,
-    )
+      item => item.id === collectionSiteId,
+    );
 
-    return collectionSite
+    return collectionSite;
   }
 
   async delete(id: number): Promise<void> {
-    const collectionSiteIndex = this.items.findIndex((item) => item.id === id)
+    const collectionSiteIndex = this.items.findIndex(item => item.id === id);
 
     if (collectionSiteIndex >= 0) {
-      this.items.splice(collectionSiteIndex, 1)
+      this.items.splice(collectionSiteIndex, 1);
     }
   }
 
   async findById(id: number) {
-    const collectionSite = this.items.find((item) => item.id === id)
+    const collectionSite = this.items.find(item => item.id === id);
 
     if (!collectionSite) {
-      return null
+      return null;
     }
 
-    return collectionSite
+    return collectionSite;
   }
 
   async findMany() {
-    return this.items
+    return this.items;
   }
 }

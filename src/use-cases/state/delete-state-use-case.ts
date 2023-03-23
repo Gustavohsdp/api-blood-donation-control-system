@@ -1,13 +1,13 @@
-import { StatesRepository } from '@/repositories/states-repository'
+import { StatesRepository } from '@/repositories/states-repository';
 
 interface DeleteStateUseCaseRequest {
-  id: number
+  id: number;
 }
 
 export class DeleteStateUseCase {
-  constructor(private statesRepository: StatesRepository) { }
+  constructor(private statesRepository: StatesRepository) {}
 
   async execute({ id }: DeleteStateUseCaseRequest): Promise<void> {
-    await this.statesRepository.delete(id)
+    await this.statesRepository.delete(id);
   }
 }
