@@ -1,6 +1,5 @@
+import { makeFindManyStateUseCase } from '@/use-cases/factories/state/make-find-many-state-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
-
-import { makeFindManyStateUseCase } from '@/use-cases/factories/state/make-find-many-city-use-case'
 
 export async function findMany(request: FastifyRequest, reply: FastifyReply) {
   const findManyUseCase = makeFindManyStateUseCase()

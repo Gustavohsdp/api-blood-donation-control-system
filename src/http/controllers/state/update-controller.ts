@@ -1,7 +1,6 @@
+import { makeUpdateStateUseCase } from '@/use-cases/factories/state/make-update-state-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-
-import { makeUpdateStateUseCase } from '@/use-cases/factories/state/make-update-city-use-case'
 
 export async function update(request: FastifyRequest, reply: FastifyReply) {
   const updateBodySchema = z.object({
