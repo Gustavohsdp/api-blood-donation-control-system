@@ -4,6 +4,7 @@ import { ZodError } from 'zod'
 import { env } from './env'
 import { citiesRoutes } from './http/controllers/city/routes'
 import { collectionSitesRoutes } from './http/controllers/collection-site/routes'
+import { donationsRoutes } from './http/controllers/donation/routes'
 import { statesRoutes } from './http/controllers/state/routes'
 import { unitsRoutes } from './http/controllers/unity/routes'
 
@@ -13,6 +14,7 @@ app.register(citiesRoutes)
 app.register(statesRoutes)
 app.register(collectionSitesRoutes)
 app.register(unitsRoutes)
+app.register(donationsRoutes)
 
 app.setErrorHandler((error, _request, reply) => {
   if (error instanceof ZodError) {
