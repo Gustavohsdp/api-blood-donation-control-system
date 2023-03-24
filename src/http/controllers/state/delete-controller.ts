@@ -3,10 +3,7 @@ import { z } from 'zod'
 
 import { makeDeleteStateUseCase } from '@/use-cases/factories/state/make-delete-state-use-case'
 
-export async function deleteState(
-  request: FastifyRequest,
-  reply: FastifyReply,
-) {
+export async function remove(request: FastifyRequest, reply: FastifyReply) {
   const deleteParamsSchema = z.object({
     stateId: z.coerce.number(),
   })
