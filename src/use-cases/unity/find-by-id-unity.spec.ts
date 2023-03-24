@@ -23,7 +23,7 @@ describe('Find By Id Unity Use Case', () => {
     })
 
     const { unity } = await sut.execute({
-      id: created.id,
+      unityId: created.id,
     })
 
     expect(unity.id).toEqual(expect.any(Number))

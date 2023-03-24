@@ -4,7 +4,7 @@ import { Unity } from '@prisma/client'
 import { ResourceNotFoundError } from '../errors/resource-not-found-error'
 
 interface FindByIdUnityUseCaseRequest {
-  id: number
+  unityId: number
 }
 
 interface FindByIdUnityUseCaseResponse {
@@ -15,9 +15,9 @@ export class FindByIdUnityUseCase {
   constructor(private unitsRepository: UnitsRepository) {}
 
   async execute({
-    id,
+    unityId,
   }: FindByIdUnityUseCaseRequest): Promise<FindByIdUnityUseCaseResponse> {
-    const unity = await this.unitsRepository.findById(id)
+    const unity = await this.unitsRepository.findById(unityId)
 
     if (!unity) {
       throw new ResourceNotFoundError()

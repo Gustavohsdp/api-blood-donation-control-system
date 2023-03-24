@@ -28,7 +28,7 @@ describe('Delete Unity Use Case', () => {
     })
 
     await sut.execute({
-      id: unity.id,
+      unityId: unity.id,
     })
 
     await expect(() =>

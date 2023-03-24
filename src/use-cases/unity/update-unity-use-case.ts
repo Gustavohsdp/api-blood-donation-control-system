@@ -2,7 +2,7 @@ import { UnitsRepository } from '@/repositories/units-repository'
 import { Unity } from '@prisma/client'
 
 interface UpdateUnityUseCaseRequest {
-  id: number
+  unityId: number
 
   name: string
   number: string
@@ -21,14 +21,14 @@ export class UpdateUnityUseCase {
     name,
     cityId,
     complement,
-    id,
+    unityId,
     number,
   }: UpdateUnityUseCaseRequest): Promise<UpdateUnityUseCaseResponse> {
     const unity = await this.unitsRepository.update({
       name,
       cityId,
       complement,
-      id,
+      id: unityId,
       number,
     })
 

@@ -5,12 +5,14 @@ import { env } from './env'
 import { citiesRoutes } from './http/controllers/city/routes'
 import { collectionSitesRoutes } from './http/controllers/collection-site/routes'
 import { statesRoutes } from './http/controllers/state/routes'
+import { unitsRoutes } from './http/controllers/unity/routes'
 
 export const app = fastify()
 
 app.register(citiesRoutes)
 app.register(statesRoutes)
 app.register(collectionSitesRoutes)
+app.register(unitsRoutes)
 
 app.setErrorHandler((error, _request, reply) => {
   if (error instanceof ZodError) {

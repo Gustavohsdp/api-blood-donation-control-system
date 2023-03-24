@@ -23,7 +23,7 @@ describe('Update Unity Use Case', () => {
     })
 
     const { unity } = await sut.execute({
-      id: created.id,
+      unityId: created.id,
       cityId: created.cityId,
       complement: created.complement,
       name: 'Unity center',
