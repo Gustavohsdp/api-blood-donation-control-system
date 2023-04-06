@@ -5,7 +5,7 @@ import { Product } from '@prisma/client'
 import {
   CreateProps,
   ProductsRepository,
-  UpdateProps
+  UpdateProps,
 } from '../products-repository'
 
 export class InMemororyProductsRepository implements ProductsRepository {

@@ -5,7 +5,7 @@ import { People } from '@prisma/client'
 import {
   CreateProps,
   PeoplesRepository,
-  UpdateProps
+  UpdateProps,
 } from '../peoples-repository'
 
 export class InMemororyPeoplesRepository implements PeoplesRepository {

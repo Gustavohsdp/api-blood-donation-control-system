@@ -2,7 +2,7 @@ import { prisma } from '../../lib/prisma'
 import {
   CreateProps,
   ProductsRepository,
-  UpdateProps
+  UpdateProps,
 } from '../products-repository'
 
 export class PrismaProductsRepository implements ProductsRepository {

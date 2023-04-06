@@ -5,7 +5,7 @@ import { Donation } from '@prisma/client'
 import {
   CreateProps,
   DonationsRepository,
-  UpdateProps
+  UpdateProps,
 } from '../donations-repository'
 
 export class InMemororyDonationsRepository implements DonationsRepository {

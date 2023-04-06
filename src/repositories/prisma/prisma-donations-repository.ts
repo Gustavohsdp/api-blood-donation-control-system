@@ -2,7 +2,7 @@ import { prisma } from '../../lib/prisma'
 import {
   CreateProps,
   DonationsRepository,
-  UpdateProps
+  UpdateProps,
 } from '../donations-repository'
 
 export class PrismaDonationsRepository implements DonationsRepository {

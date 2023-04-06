@@ -5,7 +5,7 @@ import { CollectionSite } from '@prisma/client'
 import {
   CollectionSitesRepository,
   CreateProps,
-  UpdateProps
+  UpdateProps,
 } from '../collection-sites-repository'
 
 export class InMemoryCollectionSites implements CollectionSitesRepository {
