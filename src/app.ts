@@ -20,6 +20,10 @@ app.register(donationsRoutes)
 app.register(peoplesRoutes)
 app.register(productsRoutes)
 
+app.get('/', async (request, reply) => {
+  return 'Hello World'
+})
+
 app.setErrorHandler((error, _request, reply) => {
   if (error instanceof ZodError) {
     return reply

@@ -1,4 +1,4 @@
-import { PrismaPeoplesRepository } from '@/repositories/prisma/prisma-peoples-repository'
+import { PrismaPeoplesRepository } from '@/repositories/prisma/prisma-peoples-repository copy'
 import { CreatePeopleUseCase } from '@/use-cases/people/create-people-use-case'
 
 export function makeCreatePeopleUseCase() {
